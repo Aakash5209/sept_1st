@@ -259,26 +259,109 @@
 // }
 // console.log(flatArr([[1,2],[3,4],[5,6]]))
 
-function groupBy(arr,prop){
-    return arr.reduce((acc,obj)=>{
-        const key = obj[prop]
-        // console.log(key)
-        if(!acc[key]){
-            acc[key] = []
-        }
-        acc[key].push(obj)
-        return acc
+// function groupBy(arr,prop){
+//     return arr.reduce((acc,obj)=>{
+//         const key = obj[prop]
+//         // console.log(key)
+//         if(!acc[key]){
+//             acc[key] = []
+//         }
+//         acc[key].push(obj)
+//         return acc
 
-    },{})
+//     },{})
 
+// }
+
+// const arr1 = [
+//     {name:'alice',age:25, location:'delhi'},
+//     {name:'bob',age:15, location:'mumbai'},
+//     {name:'bob',age:25, location:'delhi'},
+//     {name:'bob',age:45, location:'pune'},
+//     {name:'alice',age:35, location:'rajasthan'},
+//     {name:'aman',age:35, location:'noida'},
+// ]
+// console.log(groupBy(arr1,'location'))
+
+
+
+// function countWord(arr, key){
+//     return arr.filter(str=>str.length ===key).length
+// }
+
+// console.log(countWord(['abc','def','ehj','fj'],3))
+
+// function groupByLetter(arr){
+//     return arr.reduce((acc,str)=>{
+//         const key = str.charAt(0)
+//         if(!acc[key]){
+//             acc[key] = []
+//         }
+//         acc[key].push(str)
+//         return acc
+
+//     },{})
+// }
+// console.log(groupByLetter(['abc','def','ehj','efj','afhbc','dhef',]))
+
+// function getTotalandAvg(arr){
+//     let total = arr.reduce((acc,obj)=>acc+obj.price,0)
+//     let avg = total/arr.length
+//     return {total,avg}
+// }
+
+// let arr = [
+//     {name:'item1',price:100},
+//     {name:'item2',price:200},
+//     {name:'item3',price:300}
+// ]
+
+// console.log(getTotalandAvg(arr))
+
+// function invokeMap(arr,funcs){
+
+//     return funcs.map(fn=>arr.map(fn))
+
+// }
+
+// console.log(invokeMap([1,2,3,4],[x=>x+1,x=>x+2,x=>x+3]))
+
+
+// function partitionArr(arr,cb){
+//     return arr.reduce((acc,val)=>{
+//         if(cb(val)){
+//             acc[0].push(val)
+//         }
+//         else{
+//             acc[1].push(val)
+
+//         }
+
+//         return acc
+
+
+//     },[[],[]])
+// }
+// console.log(partitionArr([1,2,3,4],x=>x%2===0))
+
+function transformObj(arr,propName,cb){
+    return arr.map(obj=>({
+        ...obj,
+        [propName]:cb(obj)
+
+
+    }))
+    
 }
 
 const arr1 = [
-    {name:'alice',age:25, location:'delhi'},
-    {name:'bob',age:15, location:'mumbai'},
-    {name:'bob',age:25, location:'delhi'},
-    {name:'bob',age:45, location:'pune'},
-    {name:'alice',age:35, location:'rajasthan'},
-    {name:'aman',age:35, location:'noida'},
-]
-console.log(groupBy(arr1,'location'))
+        {name:'alice',age:5, location:'delhi'},
+        {name:'bob',age:15, location:'mumbai'},
+        {name:'chaman',age:25, location:'delhi'},
+        {name:'karan',age:15, location:'pune'},
+        {name:'aman',age:35, location:'rajasthan'},
+        {name:'naman',age:3, location:'noida'},
+    ]
+
+// console.log(transformObj(arr1,"isAdult",(obj)=>obj.age>=18))
+console.log(transformObj(arr1,"isAdult",({age})=>age>=18))
